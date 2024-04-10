@@ -1,0 +1,83 @@
+/*Formatting text*/
+h1.BigText{
+    color: white;
+    padding: 0;
+    margin: 0;
+    font-size: 40px;
+    font-variant: small-caps;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-align: left;
+}
+
+.bannerColor{
+    background-color: #a06d26;
+    width: 100%;
+    height: 150px;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.backColor{
+    background-color: #d3a05f;
+    background-size: cover;
+    overflow: hidden;
+}
+
+/*Images layout*/
+.candle-layout{
+    margin: 30px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+}
+
+.candle-layout:hover{
+    border: 2px solid #777;
+}
+
+.candle-layout img{
+    width: 100%;
+    height: 200px;
+}
+
+.caption{
+    padding: 15px;
+    text-align: center;
+}
+
+/*Product pages styles*/
+.prodLayout{
+    margin: 40px;
+    float: left;
+    width: 250px;
+}
+
+.prodLayout img{
+    width: 200%;
+    height: 200%;
+}
+
+.description{
+    padding-top: 20px;
+    margin-left: 30px;
+    justify-content: right;
+    text-align: right;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h4.smallBannerText{
+    color: white;
+    padding: 0;
+    margin: 0;
+    font-size: 40px;
+    font-variant: small-caps;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-align: left;
+    background-color: #a06d26;
+    width: 100%;
+    height: 50px;
+}
