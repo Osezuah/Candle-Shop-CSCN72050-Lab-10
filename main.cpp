@@ -15,6 +15,7 @@ void sendJScript(response&, string); //for javascript files
 void sendJPEG(response&, string); //for jpeg images
 void sendFile(response&, string, string, string); //the generic umbrella function that can be called by evrything above
 
+//generic function that just displays the files
 void sendFile(response& res, string path, string filename, string contentType)
 {
 	string filePath = path + filename; //gets a relative file path through simple string arithmetic
@@ -56,6 +57,29 @@ void sendJPEG(response& res, string filename) //for jpeg images
 	sendFile(res, "../public/images/", filename, "image/jpeg"); //MIME standard content type for image files
 }
 
+
+//Lab 10 specific functions
+void ToCheckout(response&, string, string);
+void ToCheckout(response& res, string filename, string contentType) {
+	string filepath = "../public/" + filename;
+	ifstream readFile(filepath, ifstream::in); //read file contents
+
+	if (readFile) {
+		ostringstream contents; //stream file contents into 1 string with ostringstream 
+		contents << readFile.rdbuf(); 
+		readFile.close(); //close file
+
+		res.set_header("Content-Type", contentType); //sets the header content type to allow crow render the page accurately
+		res.code = 402; //payment required (requests login information)
+		res.write(contents.str()); //writes file contents (in string variable) to browser 
+	}
+	else { //if something goes wrong
+		res.code = 404; //send this code
+		res.write("Page did not open"); //write this error message to browser
+	}
+	res.end(); //end automatically sends to the client
+}
+
 int main()
 {
 	crow::SimpleApp app;
@@ -93,6 +117,11 @@ int main()
 		sendHtml(res, filename);
 		});
 
+	CROW_ROUTE(app, "/Checkout/<string>") 
+		([](const request& req, response& res, string filename) {
+		string contentType = "text/html";
+		ToCheckout(res, filename, contentType);
+		});
 
 	app.port(23500).multithreaded().run();
 	
