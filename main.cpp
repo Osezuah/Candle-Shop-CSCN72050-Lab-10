@@ -85,6 +85,14 @@ int main()
 		sendJPEG(res, filename);
 		});
 
+	//to prevent myself from hardcoding the cart.html route, I modified
+	//REQ04 so that it will open the cart.html. That is why there
+	//is an extra <string> at the end
+	CROW_ROUTE(app, "/AddToCart/<int>/<string>/<string>") 
+		([](const request& req, response& res, int quantity, string product, string filename) {
+		sendHtml(res, filename);
+		});
+
 
 	app.port(23500).multithreaded().run();
 	
