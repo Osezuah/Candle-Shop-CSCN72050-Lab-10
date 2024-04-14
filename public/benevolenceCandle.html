@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/mystyles.css">
+    <title>Benevolence Candle</title>
+</head>
+
+<body>
+    <h4 class="smallBannerText"> Candle Shop</h4>
+    <img src="images/cartIcon.jpg" alt="Shopping Cart Icon" class="cart-icon"> <!--implement cart state logic later-->
+
+    <div class="prodLayout">
+        <img src="images/benevolence.jpg" alt="Green amber moss scented candle $50">
+        <div class="productInfo">
+            <h2 class="description text" style="font-size: 35px; font-variant: small-caps;"> Benevolence Candle </h2>
+            <p  class="text" style="font-size: 20px;">Benevolence LA Rose & Sandalwood Fall Candle for Home - Scented Soy Candles | Aromatherapy Black Candle, Gifts for Men and Women, Jar Candle Small - 6 oz</p>
+
+            <p class="text" style="font-size: 16px;"> Each Benevolence LA candle is scented with essential oils for a consistent burning experience. Envelope your home in rich, aromatherapy inspired scents that promote tranquility and relaxation</p>
+
+            <p class="text" style="font-size: 16px; color: red;">Price: $26.00CAD </p>
+            <div class="quantity">
+                <label for="BenevolenceQuantity"> Select quantity:</label>
+                <select id="BenevolenceQuantity" name="BenevolenceQuantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <button class="Cart" onclick="addBenevolenceToCart()"> Add To Cart</button>
+        </div>
+    </div>
+    <script src="scripts/myscript.js"></script>
+</body>
+</html>

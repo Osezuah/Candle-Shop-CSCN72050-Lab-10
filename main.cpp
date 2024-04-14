@@ -31,7 +31,8 @@ void sendFile(response& res, string path, string filename, string contentType)
 	}
 	else { //if something goes wrong
 		res.code = 404; //send this code
-		res.write("Page did not open"); //write this error message to browser
+		res.set_header("Content-Type", "text/html");
+		res.write("<h1> 404 Page did not open </h1>"); //write this error message to browser
 	}
 	res.end(); //end automatically sends to the client
 }
@@ -75,14 +76,18 @@ void ToCheckout(response& res, string filename, string contentType) {
 	}
 	else { //if something goes wrong
 		res.code = 404; //send this code
-		res.write("Page did not open"); //write this error message to browser
+		res.set_header("Content-Type", "text/html");
+		res.write("<h1> 404 Page did not open </h1>"); //write this error message to browser
 	}
-	res.end(); //end automatically sends to the client
+
+	res.end(); //end automatically sends to the client	
 }
 
+int STATE = 0; //for cart state
 int main()
 {
 	crow::SimpleApp app;
+	string cartFile = "cart.txt"; //shopping cart
 
 	CROW_ROUTE(app, "/") //root path
 		([](const request &req, response &res) {
@@ -109,19 +114,82 @@ int main()
 		sendJPEG(res, filename);
 		});
 
-	//to prevent myself from hardcoding the cart.html route, I modified
-	//REQ04 so that it will open the cart.html. That is why there
-	//is an extra <string> at the end
-	CROW_ROUTE(app, "/AddToCart/<int>/<string>/<string>") 
-		([](const request& req, response& res, int quantity, string product, string filename) {
-		sendHtml(res, filename);
-		});
-
 	CROW_ROUTE(app, "/Checkout/<string>") 
 		([](const request& req, response& res, string filename) {
 		string contentType = "text/html";
 		ToCheckout(res, filename, contentType);
 		});
+
+	CROW_ROUTE(app, "/login").methods(HTTPMethod::POST)
+		([&](const request& req, response& res) {
+		string UserName = req.url_params.get("Username");
+		string Password = req.url_params.get("Password");
+		if (!UserName.empty() && !Password.empty()) {
+			if(UserName == "Nelly" && Password == "1234")
+			{
+				res.code = 202;
+				res.write("<script>alert('Purchase confirmed! Thank you for shopping at Candle Shop');</script>"); //sent javascript message box code to confirm purchase
+
+				if(STATE == 7){
+					ifstream readCartFile(cartFile); //open cart file for reading
+					ostringstream streamCartFile;
+					if(readCartFile.is_open()){ //read cart satae from file
+						streamCartFile << readCartFile.rdbuf();
+						readCartFile.close();
+						res.write(streamCartFile.str()); //return cart state from ASCII file to plain text
+					}
+					else{ //handles errors
+						res.code = 500;
+						res.set_header("Content-Type", "text/html");
+						res.write("<h1> 500 Server could not read cart state </h1>");
+					}
+				}
+			}
+			else
+			{
+				res.code = 401;
+				res.set_header("Content-Type", "text/html");
+				res.write("<h1> 401 You do not exist in our database </h1>");
+			}
+			
+			res.end();
+		}
+	});
+	//to prevent myself from hardcoding the cart.html route, I modified
+	//REQ04 so that it will open the cart.html. That is why there
+	//is an extra <string> at the end
+	CROW_ROUTE(app, "/AddToCart/<int>/<string>/<string>") 
+		([&](const request& req, response& res, int quantity, string product, string filename) {
+		ofstream writeToCart(cartFile); //save state to shopping cart file
+		STATE = quantity;
+		if (STATE == 0){
+			res.code = 200;
+			if(writeToCart.is_open()){
+				res.code = 200;
+				writeToCart << "Cart is empty" << endl;
+			}
+			else
+			{
+				res.code = 500;
+			}
+		}
+		else{
+			if(writeToCart.is_open()){
+				STATE = 7; //7 represents product is on queue for shipment
+				writeToCart << "The cart state is: " << STATE << ". Means that your " << quantity << " items(s) of " << product << " is on queue for shipment" << endl;
+				res.code = 200;
+			}
+			else{
+				res.code = 500;
+				res.set_header("Content-Type", "text/html");
+				res.write("<h1> 500 i couldn't open my file </h1>");
+			}
+		}
+		writeToCart.close(); //close file after use
+		sendHtml(res, filename); //render cart.html after saving cart state to file
+		});
+
+	
 
 	app.port(23500).multithreaded().run();
 	
