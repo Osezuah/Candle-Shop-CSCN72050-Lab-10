@@ -1,1 +1,1 @@
-The cart state: 7. Means that your 3piece(s) of Firesideis on queue for shipment
+The cart state is: 7. Means that your 4 items(s) of Fireside is on queue for shipment
