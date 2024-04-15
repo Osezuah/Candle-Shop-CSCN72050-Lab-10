@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/mystyles.css">
+    <title>Wood Scented Candle</title>
+</head>
+
+<body>
+    <h4 class="smallBannerText"> Candle Shop</h4>
+    <img src="images/cartIcon.jpg" alt="Shopping Cart Icon" class="cart-icon"> <!--implement cart state logic later-->
+
+    <div class="prodLayout">
+        <img src="images/wood-scent.jpg" alt="Green amber moss scented candle $50">
+        <div class="productInfo">
+            <h2 class="description text" style="font-size: 35px; font-variant: small-caps;"> Wood Scented Candle </h2>
+            <p  class="text" style="font-size: 20px;">Premium Wood Candle | Cedar Scented Candle Holiday Candles | 8 oz 45 Hour Burn | Crackle Candle, Soy Candle, Winter Candle Gifts for Women | Soy Candles for Home Scented | Scented Candles for Men</p>
+
+            <p class="text" style="font-size: 16px;"> Scented candles are meant to fill your space with aroma; we used the finest essential oils to fill your room with those beautiful aromas. No faint smelling candles here! Fill your room with top notes of cedar that gives a rustic and woodsy aroma.</p>
+
+            <p class="text" style="font-size: 16px; color: red;">Price: $26.00CAD </p>
+            <div class="quantity">
+                <label for="WoodQuantity"> Select quantity:</label>
+                <select id="WoodQuantity" name="WoodQuantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <button class="Cart" onclick="addWoodToCart()"> Add To Cart</button>
+        </div>
+    </div>
+    <script src="scripts/myscript.js"></script>
+</body>
+</html>

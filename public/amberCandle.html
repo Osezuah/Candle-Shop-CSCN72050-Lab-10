@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/mystyles.css">
+    <title>Amber Moss Candle</title>
+</head>
+
+<body>
+    <h4 class="smallBannerText"> Candle Shop</h4>
+    <img src="images/cartIcon.jpg" alt="Shopping Cart Icon" class="cart-icon"> <!--implement cart state logic later-->
+
+    <div class="prodLayout">
+        <img src="images/amber-moss.jpg" alt="Green amber moss scented candle $50">
+        <div class="productInfo">
+            <h2 class="description text" style="font-size: 35px; font-variant: small-caps;"> Amber Moss Candle </h2>
+            <p  class="text" style="font-size: 20px;">Premium Soy Candle | Amber Moss Scented Candles for Home | Natural Soy Candles Gifts for Women | Aromatherapy Candle, Nature Collection</p>
+            <p class="text" style="font-size: 16px;">Indulge in the comforting and grounding scent of Amber Moss, which offers a perfect balance of earthiness and subtle sweetness. Treat yourself or surprise a special someone with this captivating fragrance.</p>
+            <p class="text" style="font-size: 16px; color: red;">Price: $50.00CAD </p>
+            <div class="quantity">
+                <label for="AmberQuantity"> Select quantity:</label>
+                <select id="AmberQuantity" name="AmberQuantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <button class="Cart" onclick="addAmberToCart()"> Add To Cart</button>
+        </div>
+    </div>
+    <script src="scripts/myscript.js"></script>
+</body>
+</html>
