@@ -8,4 +8,4 @@ I give all credits to the companies, creators, promoters and true owners of the 
 This is a fullstack website where the backend API is C++ CROW framework hosted in a Docker container. The frontend was created with HTML, CSS and JavaScript.
 <br><br>
 
-<video width="630" height="300" src="https://github.com/Osezuah/Candle-Shop-CSCN72050-Lab-10/blob/main/Ehi's%20Lab10%20Candle%20Shop%20Video%20(1).mp4" controls></video>
+<video width="630" height="300" src="https://github.com/Osezuah/Candle-Shop-CSCN72050-Lab-10/blob/07f59003b29d31572e810cc9047d528686c79bb8/Ehi's%20Lab10%20Candle%20Shop%20Video%20(1).mp4" controls></video>
