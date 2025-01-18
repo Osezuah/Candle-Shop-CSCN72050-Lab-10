@@ -6,10 +6,9 @@ Neither the website nor are the products being sold/used for personal commercial
 I give all credits to the companies, creators, promoters and true owners of the products. 
 
 This is a fullstack website where the backend API is C++ CROW framework hosted in a Docker container. The frontend was created with HTML, CSS and JavaScript.
+
+There is no sound for this video.
 <br><br>
-
-
-
 
 https://github.com/user-attachments/assets/990d5aca-3d5a-414e-a7d6-32cb091809b6
 
